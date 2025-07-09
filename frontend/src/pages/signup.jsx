@@ -22,7 +22,7 @@ const Signup = () => {
     }
 
     try {
-        const response = await axios.post('${VITE_API_BASE_URL=https://api.womenbusinesslisted.com}/api/register', {
+        const response = await axios.post(`${VITE_API_BASE_URL=https://api.womenbusinesslisted.com}/api/register`, {
             name: formData.name,
             email: formData.email,
             password: formData.password
