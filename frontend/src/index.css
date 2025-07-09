@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+:root {
+  --brand-color: #d08d00;
+}
+
+.custom-brand-color {
+  color: var(--brand-color);
+}
+
+.custom-brand-bg {
+  background-color: var(--brand-color);
+  color: white;
+}
