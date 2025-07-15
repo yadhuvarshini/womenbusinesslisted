@@ -6,6 +6,10 @@ import bcrypt from 'bcrypt';
 import { hashPassword } from '../handler/passwordHash.js';
 
 //for reister : the frontnd will send the name email password, which should be captured in the body of the request  and check if already exist 
+//form data , validate , check if user already exists, if not then create a new user and send the token to the client
+//if user already exists then send error message to the client
+//if user created successfully then send the user and token to the client
+
 
 export const register  = async(req, res) => {
     const { name, email, password } = req.body;
@@ -45,6 +49,11 @@ if (!name || !email || !password) {
 }
 
 //for login check for the email , then password comparison 
+//check emailk in mongo db , if not found then send error message to the client
+//if found then compare the password with the hashed password in the database
+// then generate a token and send it to the client along with the user details
+
+
 
 export const login = async (req, res) => {
     try {
@@ -54,6 +63,7 @@ export const login = async (req, res) => {
         console.log(user)
         
         const match = await bcrypt.compare(password, user.password)
+        if (!match) return res.status(401).json({ error: "invalid credentials" });
         const token = jwt.sign( {id: user._id}, process.env.JWT_SECRET, {expiresIn: "1d"});
         res.json({ token, user });
     } catch(err) {

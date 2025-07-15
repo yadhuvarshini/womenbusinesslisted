@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 
+//password sent from the register function will be hashed here 
 
 // Function to hash a password
 export const hashPassword = async (password) => {

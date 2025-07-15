@@ -20,7 +20,7 @@ const Footer = () => {
           <p className="text-gray-600"> Women Business Listed is a dedicated platform empowering women entrepreneurs by showcasing their businesses, building visibility, and creating meaningful connections. We believe in amplifying women’s voices, one business at a time.
 
         </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-md text-gray-500">
             Address: Women Entrepreneurship Development Organisation Pvt Ltd
         2665+2V4, Guindy Industrial Estate, SIDCO Industrial Estate, Guindy, Chennai, Tamil Nadu 600032          
           </p>
@@ -40,7 +40,7 @@ const Footer = () => {
              {/* Whatsapp */}
             <a
               href="https://wame.pro/collective"
-              className="w-9 h-9  flex items-center justify-center hover:bg-red-600"
+              className="w-9 h-9  flex items-center justify-center"
               target="_blank"
               rel="noreferrer"
             >
@@ -50,7 +50,7 @@ const Footer = () => {
             {/* IG */}
             <a
               href="https://www.instagram.com/wedowomen_india/?hl=en"
-              className="w-9 h-9  flex items-center justify-center hover:bg-indigo-600"
+              className="w-9 h-9  flex items-center justify-center "
               target="_blank"
               rel="noreferrer"
             >
@@ -60,7 +60,7 @@ const Footer = () => {
             {/* Linkedin */}
             <a
               href="https://www.linkedin.com/company/wedo-women-entrepreneurship-development-organisation/?originalSubdomain=in"
-              className="w-9 h-9 r flex items-center justify-center hover:bg-pink-600"
+              className="w-9 h-9 r flex items-center justify-center "
               target="_blank"
               rel="noreferrer"
             >
@@ -70,7 +70,7 @@ const Footer = () => {
             {/* Facebook */}
             <a
               href="https://www.facebook.com/wedowomen/"
-              className="w-9 h-9  flex items-center justify-center hover:bg-blue-600"
+              className="w-9 h-9  flex items-center justify-center"
               target="_blank"
               rel="noreferrer"
             >

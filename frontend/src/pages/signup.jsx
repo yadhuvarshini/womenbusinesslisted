@@ -27,7 +27,6 @@ const Signup = () => {
             email: formData.email,
             password: formData.password
         });
-        
         alert("Signup successful!");
         console.log(response.data);
     } catch (error) {
