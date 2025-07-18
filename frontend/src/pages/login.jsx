@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 
 
 // form that data should be passed to request using axios
 const Login = () => {
     const [formData, setFormData] = useState({ email: ``, password: `` });
     const token = localStorage.getItem('token');
+
     console.log("Using API:", import.meta.env.VITE_API_BASE_URL);
 
     // const payload = JSON.parse(atob(token.split('.')[1]));
@@ -51,8 +52,9 @@ const Login = () => {
             alert("Login successful!");
             console.log(res.data);
             // Redirect to the home page or dashboard after successful login
-            window.location.href = "/";
-            
+            // Use useNavigate from react-router-dom to navigate
+            const navigate = useNavigate();
+            navigate('/api/login');
         } catch (error) {
             console.error("There was an error logging in!", error);
             alert("Login failed. Please try again.");
