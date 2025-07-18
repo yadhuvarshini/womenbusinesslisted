@@ -35,7 +35,7 @@ const ProfilePage = () => {
   const [message, setMessage] = useState('');
 
   const fetchProfile = async () => {
-                console.log("Using API:", import.meta.env.VITE_API_BASE_URL);
+    console.log("Using API:", import.meta.env.VITE_API_BASE_URL);
 
     try {
 
@@ -49,7 +49,8 @@ const ProfilePage = () => {
         }
       });
         console.log('Profile data fetched:', data);
-    
+        console.log("Using API:", import.meta.env.VITE_API_BASE_URL);
+
         
 
       setForm(prev => {
