@@ -105,33 +105,29 @@ const ProfilePage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Submitting...");
 
+   try {
+    if (!form.business?.socialMedia?.platform) {
+      form.business.socialMedia = { ...form.business.socialMedia, platform: 'Other' };
+    }
 
+    const rawToken = localStorage.getItem('authToken');
+    const token = rawToken.replace(/^"|"$/g, '');
 
-    try {
-         if (!form.business.socialMedia.platform) {
-        form.business.socialMedia.platform = 'Other';
+    console.log("Form data before sending:", JSON.stringify(form, null, 2));
+
+    const res = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/profile`, form, {
+      headers: {
+        Authorization: `Bearer ${token}`
       }
-        const rawToken = localStorage.getItem('authToken');
-        const token = rawToken.replace(/^"|"$/g, ''); // Removes leading/trailing quotes
-        console.log("Submitting with form data:", JSON.stringify(form, null, 2));
-        await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/profile`, form, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-        if (!form.business.socialMedia.platform) {
-        form.business.socialMedia.platform = 'Other';
-        }
-      //console log the request body
-      console.log('Request body:', form);
-      console.log('token:', token);
-      setMessage('Profile updated successfully ✅');
-      //navigate to profile page after successful update
-      navigate('/');
-      console.log("Profile updated successfully");
+    });
+
+    console.log("API response:", res.data);
+    setMessage('Profile updated successfully ✅');
+    navigate('/');
     } catch (err) {
-      console.error("Failed to update profile:", err);
+      console.error("Top-level catch error:", err);
       if (err.response) {
         console.error("Error Response Data:", err.response.data);
         console.error("Error Status:", err.response.status);
@@ -140,8 +136,7 @@ const ProfilePage = () => {
       }
       setMessage('Failed to update ❌');
     }
-  };
-
+};
   useEffect(() => {
     fetchProfile();
   }, []);
@@ -288,6 +283,11 @@ const ProfilePage = () => {
     </div>
    
   );
+};
+
+window.onerror = function (msg, url, lineNo, columnNo, error) {
+  console.error("Global error caught:", msg, error);
+  return false;
 };
 
 export default ProfilePage;
