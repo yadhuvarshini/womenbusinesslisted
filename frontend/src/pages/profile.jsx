@@ -114,6 +114,7 @@ const ProfilePage = () => {
       }
         const rawToken = localStorage.getItem('authToken');
         const token = rawToken.replace(/^"|"$/g, ''); // Removes leading/trailing quotes
+        console.log("Submitting with form data:", JSON.stringify(form, null, 2));
         await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/profile`, form, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -130,8 +131,14 @@ const ProfilePage = () => {
       navigate('/');
       console.log("Profile updated successfully");
     } catch (err) {
+      console.error("Failed to update profile:", err);
+      if (err.response) {
+        console.error("Error Response Data:", err.response.data);
+        console.error("Error Status:", err.response.status);
+      } else {
+        console.error("Error Message:", err.message);
+      }
       setMessage('Failed to update ❌');
-      console.error(err);
     }
   };
 
