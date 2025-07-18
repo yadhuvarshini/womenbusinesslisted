@@ -32,7 +32,7 @@ const Login = () => {
                 email: email,
                 password: password
             });
-            
+            console.log("Using API:", import.meta.env.VITE_API_BASE_URL);
             const { token, user } = res.data;
             // Store the token in localStorage or sessionStorage
             localStorage.setItem("authToken",JSON.stringify(token));
