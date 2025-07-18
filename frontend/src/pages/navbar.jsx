@@ -21,11 +21,13 @@ const Navbar = () => {
   }, []);
 
   const handleLogin = () => {
-      navigate('/login');
+    navigate('/login');
+    window.dispatchEvent(new Event('storage'));
   };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    window.dispatchEvent(new Event('storage'));
     setIsLoggedIn(false);
     window.location.reload();
   };
