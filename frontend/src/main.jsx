@@ -14,9 +14,9 @@ createRoot(document.getElementById('root')).render(
   <BrowserRouter>
   <Routes>
     <Route path="/" element={<Homepage />} />
-    <Route path="/api/signup" element={<Signup />} />
-    <Route path="/api/login" element={<Login />} />
-    <Route path="/api/profile" element={<ProfilePage />} />
+    <Route path="/signup" element={<Signup />} />
+    <Route path="/login" element={<Login />} />
+    <Route path="/profile" element={<ProfilePage />} />
     
     {/* <Route path="/homepage" element={<Homepage />} /> */}
     <Route path="*" element={<h1>404 Not Found</h1>} /> 
