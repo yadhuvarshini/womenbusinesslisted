@@ -35,6 +35,8 @@ const ProfilePage = () => {
   const [message, setMessage] = useState('');
 
   const fetchProfile = async () => {
+                console.log("Using API:", import.meta.env.VITE_API_BASE_URL);
+
     try {
 
         const rawToken = localStorage.getItem('authToken');
