@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
 
-  useEffect(() => {
+useEffect(() => {
+  const checkAuth = () => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token);
-  }, [location]);
+  };
+
+  checkAuth();
+
+  window.addEventListener('focus', checkAuth);
+  return () => window.removeEventListener('focus', checkAuth);
+}, []);
 
   const handleLogin = () => {
       navigate('/login');
