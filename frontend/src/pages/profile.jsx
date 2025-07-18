@@ -127,9 +127,7 @@ const ProfilePage = () => {
       console.log('token:', token);
       setMessage('Profile updated successfully ✅');
       //navigate to profile page after successful update
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
+      navigate('/');
       console.log("Profile updated successfully");
     } catch (err) {
       setMessage('Failed to update ❌');
