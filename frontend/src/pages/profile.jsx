@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './navbar.jsx';
+import Footer from './footer.jsx';
 
 
 import axios from 'axios';
@@ -124,6 +126,11 @@ const ProfilePage = () => {
       console.log('Request body:', form);
       console.log('token:', token);
       setMessage('Profile updated successfully ✅');
+      //navigate to profile page after successful update
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+      console.log("Profile updated successfully");
     } catch (err) {
       setMessage('Failed to update ❌');
       console.error(err);
@@ -146,7 +153,7 @@ const ProfilePage = () => {
   if (!form.business.socialMedia) form.business.socialMedia = { platform: '', link: '' };
 
   return (
-    <div className="w-full px-4 py-8 bg-white min-h-screen">
+    <div className="w-full px-4 py-8 bg-white min-h-screen"><Navbar></Navbar>
       <div className="max-w-3xl mx-auto p-8 bg-white shadow rounded-lg">
         <div className="relative rounded-xl overflow-hidden bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white p-6 mb-8 shadow-lg">
           <div className="flex flex-col sm:flex-row items-center sm:space-x-6 space-y-4 sm:space-y-0">
@@ -166,12 +173,7 @@ const ProfilePage = () => {
         {message && <p className="mb-4 text-green-600">{message}</p>}
 
         <form  
-        onSubmit={async (e) => {
-            await handleSubmit(e);
-            // Redirect after successful login
-            navigate('/');
-          }}
-        
+        onSubmit={handleSubmit}
         className="space-y-6 bg-white/80 backdrop-blur-md rounded-xl border border-gray-200 shadow-lg p-6 transition duration-500 hover:shadow-2xl">
         {/* Basic */}
         <div>
@@ -276,8 +278,10 @@ const ProfilePage = () => {
             Save Changes
           </button>
         </form>
-      </div>
+      </div> {/* footer section */}
+      <Footer></Footer>
     </div>
+   
   );
 };
 

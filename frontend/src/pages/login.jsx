@@ -13,6 +13,8 @@ const Login = () => {
     // const payload = JSON.parse(atob(token.split('.')[1]));
     console.log(token); // should include id, email, paid
     
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
         setFormData({
             ...formData, [e.target.name]: e.target.value
@@ -50,6 +52,7 @@ const Login = () => {
             // localStorage.setItem("user", JSON.stringify(user));
             
             alert("Login successful!");
+            navigate('/profile');
             console.log(res.data);
             // Redirect to the home page or dashboard after successful login
             // Use useNavigate from react-router-dom to navigate
@@ -60,7 +63,6 @@ const Login = () => {
         }
     } 
 
-  const navigate = useNavigate();
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -71,11 +73,7 @@ const Login = () => {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form
-          onSubmit={async (e) => {
-            await handleSubmit(e);
-            // Redirect after successful login
-            navigate('/profile');
-          }}
+          onSubmit={handleSubmit}
           className="space-y-6"
           action="#"
           method="POST"
