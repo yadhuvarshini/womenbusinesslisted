@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -102,7 +104,12 @@ const Navbar = () => {
               <a href="https://amzn.in/d/6G8vdJD" className="w-full text-center text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Visionary Women Collective</a>
               {!isLoggedIn ? (
                 <button
-                  onClick={handleLogin}
+                  onClick={async (e) => {
+                  await handleLogin(e);
+                  // Redirect after successful login
+                  navigate('/profile');
+                }}
+
                   className="w-full text-[#d18f00] border border-[#d18f00] bg-white hover:bg-[#d18f00] hover:text-white px-3 py-2 rounded-md text-lg font-medium mt-2 transition"
                 >
                   Login
