@@ -35,7 +35,7 @@ const AllBusinessCarousel = () => {
     if (!userEmail) {
       alert("Please log in to contact this business.");
       //redirect to login page
-        window.location.href = '/api/login';
+        window.location.href = `${import.meta.env.VITE_API_BASE_URL}/api/login`;
       return;
     }
 
