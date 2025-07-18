@@ -7,20 +7,16 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token);
+  }, []);
+
+  useEffect(() => {
+    const handleStorage = () => {
       const token = localStorage.getItem('token');
       setIsLoggedIn(!!token);
-    }
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const handleStorage = () => {
-        const token = localStorage.getItem('token');
-        setIsLoggedIn(!!token);
-      };
-      window.addEventListener('storage', handleStorage);
-      return () => window.removeEventListener('storage', handleStorage);
-    }
-  }, []);
+    };
+    window.addEventListener('storage', handleStorage);
     return () => window.removeEventListener('storage', handleStorage);
   }, []);
 
