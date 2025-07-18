@@ -40,7 +40,7 @@ const ProfilePage = () => {
         const rawToken = localStorage.getItem('authToken');
         const token = rawToken.replace(/^"|"$/g, ''); // Removes leading/trailing quotes
 
-      const { data } = await axios.get('http://localhost:5050/api/profile', {
+       const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/profile`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -50,7 +50,7 @@ const ProfilePage = () => {
         
 
       setForm(prev => {
-        const user = data.user;
+        const user = data.user; 
     return {
         ...prev,
         name: user.name,
@@ -97,13 +97,16 @@ const ProfilePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    //             const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/login`, {
+
+
     try {
          if (!form.business.socialMedia.platform) {
         form.business.socialMedia.platform = 'Other';
       }
         const rawToken = localStorage.getItem('authToken');
         const token = rawToken.replace(/^"|"$/g, ''); // Removes leading/trailing quotes
-        await axios.put('http://localhost:5050/api/profile', form, {
+        await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/profile`, form, {
         headers: {
           Authorization: `Bearer ${token}`
         }

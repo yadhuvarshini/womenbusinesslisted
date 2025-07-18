@@ -26,7 +26,8 @@ console.log(token, "debug- 1");
     }
 
     try {
-        const response = await axios.post('http://localhost:5050/api/register', {
+        const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/register`, {
+        // const response = await axios.post('http://localhost:5050/api/register', {
             name: formData.name,
             email: formData.email,
             password: formData.password

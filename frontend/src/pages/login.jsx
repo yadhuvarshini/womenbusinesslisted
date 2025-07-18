@@ -28,8 +28,8 @@ const Login = () => {
         // Sending a POST request to the backend API for login
         // The backend should handle the authentication and return a response
         try {
-            // const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/login`, {
-            const res = await axios.post(`http://localhost:5050/api/login`, {
+            const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/login`, {
+            // const res = await axios.post(`http://localhost:5050/api/login`, {
                 email: email,
                 password: password
             });
