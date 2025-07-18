@@ -8,7 +8,7 @@ const Navbar = () => {
 
 useEffect(() => {
   const checkAuth = () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('authToken');
     setIsLoggedIn(!!token);
   };
 
@@ -23,7 +23,7 @@ useEffect(() => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('authToken');
     setIsLoggedIn(false);
     window.dispatchEvent(new Event('storage'));
     navigate('/');
