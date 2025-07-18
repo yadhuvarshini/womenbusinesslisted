@@ -7,21 +7,25 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token);
-  }, []);
-
-  useEffect(() => {
-    const handleStorage = () => {
+    if (typeof window !== 'undefined') {
       const token = localStorage.getItem('token');
       setIsLoggedIn(!!token);
-    };
-    window.addEventListener('storage', handleStorage);
+    }
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const handleStorage = () => {
+        const token = localStorage.getItem('token');
+        setIsLoggedIn(!!token);
+      };
+      window.addEventListener('storage', handleStorage);
+      return () => window.removeEventListener('storage', handleStorage);
+    }
+  }, []);
     return () => window.removeEventListener('storage', handleStorage);
   }, []);
 
   const handleLogin = () => {
-    window.location.href = '/login';
+      navigate('/login');
   };
 
   const handleLogout = () => {
@@ -104,17 +108,20 @@ const Navbar = () => {
               <a href="https://amzn.in/d/6G8vdJD" className="w-full text-center text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Visionary Women Collective</a>
               {!isLoggedIn ? (
                 <button
-                  onClick={async (e) => {
-                  await handleLogin(e);
-                  // Redirect after successful login
-                  navigate('/profile');
-                }}
-
+                  onClick={handleLogin}
                   className="w-full text-[#d18f00] border border-[#d18f00] bg-white hover:bg-[#d18f00] hover:text-white px-3 py-2 rounded-md text-lg font-medium mt-2 transition"
                 >
                   Login
                 </button>
               ) : (
+                <button
+                  onClick={() => navigate('/profile')}
+                  className="w-full text-[#d18f00] border border-[#d18f00] bg-white hover:bg-[#d18f00] hover:text-white px-3 py-2 rounded-md text-lg font-medium mt-2 transition"
+                >
+                  Profile
+                </button>
+              )}
+              {isLoggedIn && (
                 <button
                   onClick={handleLogout}
                   className="w-full text-white bg-red-600 hover:bg-red-700 px-3 py-2 rounded-md text-lg font-medium mt-2 transition"
