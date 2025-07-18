@@ -7,6 +7,8 @@ import axios from 'axios';
 const Login = () => {
     const [formData, setFormData] = useState({ email: ``, password: `` });
     const token = localStorage.getItem('token');
+    console.log("Using API:", import.meta.env.VITE_API_BASE_URL);
+
     // const payload = JSON.parse(atob(token.split('.')[1]));
     console.log(token); // should include id, email, paid
     
