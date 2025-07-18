@@ -35,10 +35,8 @@ const AllBusinessCarousel = () => {
     const userName = localStorage.getItem("loggedInUserName");
     if (!userEmail) {
       alert("Please log in to contact this business.");
-      //redirect to login page
-      
       navigate('/login');
-      return;
+      return false; // Prevent further action
     }
 
     //name	email		business	phone	method
@@ -131,7 +129,10 @@ const AllBusinessCarousel = () => {
                     href={biz["Instagram Link"]}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => handleContactClick(biz, 'Instagram')}
+                    onClick={async (e) => {
+                      const ok = await handleContactClick(biz, 'Instagram');
+                      if (!ok) e.preventDefault();
+                    }}
                   >
                     <img src="https://img.icons8.com/ios-glyphs/24/000000/instagram-new.png" alt="Instagram" />
                   </a>
@@ -141,7 +142,10 @@ const AllBusinessCarousel = () => {
                     href={biz["Facebook Link"]}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => handleContactClick(biz, 'Facebook')}
+                    onClick={async (e) => {
+                      const ok = await handleContactClick(biz, 'Facebook');
+                      if (!ok) e.preventDefault();
+                    }}
                   >
                     <img src="https://img.icons8.com/ios-glyphs/24/000000/facebook-new.png" alt="Facebook" />
                   </a>
@@ -151,7 +155,10 @@ const AllBusinessCarousel = () => {
                     href={biz["Linkedln link"]}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => handleContactClick(biz, 'LinkedIn')}
+                    onClick={async (e) => {
+                      const ok = await handleContactClick(biz, 'LinkedIn');
+                      if (!ok) e.preventDefault();
+                    }}
                   >
                     <img src="https://img.icons8.com/ios-glyphs/24/000000/linkedin.png" alt="LinkedIn" />
                   </a>

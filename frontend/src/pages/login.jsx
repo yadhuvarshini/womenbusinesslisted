@@ -53,8 +53,7 @@ const Login = () => {
             console.log(res.data);
             // Redirect to the home page or dashboard after successful login
             // Use useNavigate from react-router-dom to navigate
-            const navigate = useNavigate();
-            navigate('/api/login');
+            
         } catch (error) {
             console.error("There was an error logging in!", error);
             alert("Login failed. Please try again.");
