@@ -28,6 +28,8 @@ const AllBusinessCarousel = () => {
     console.log("Business clicked:", biz);
     console.log("Platform clicked:", platform);
     console.log("phne:", biz["Phone Number "]);
+        console.log("Using API:", import.meta.env.VITE_API_BASE_URL);
+
     const userEmail = localStorage.getItem("loggedInUserEmail");
     const userName = localStorage.getItem("loggedInUserName");
     if (!userEmail) {
