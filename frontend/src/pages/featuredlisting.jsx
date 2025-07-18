@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const AllBusinessCarousel = () => {
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const navigate = useNavigate();
   const csvUrl =
     'https://docs.google.com/spreadsheets/d/140rFP2JNPKFV3-CJ0yQ9puc37MZepXNLGUUQ_AgBq80/gviz/tq?tqx=out:csv';
 
@@ -36,8 +36,8 @@ const AllBusinessCarousel = () => {
     if (!userEmail) {
       alert("Please log in to contact this business.");
       //redirect to login page
-      const navigate = useNavigate();
-      navigate('/api/login');
+      
+      navigate('/login');
       return;
     }
 
