@@ -1,11 +1,16 @@
 import React, {useState} from 'react'
 import axios from 'axios';
+const API = import.meta.env.VITE_API_BASE_URL;
+
 
 
 // form that data should be passed to request using axios
 const Login = () => {
     const [formData, setFormData] = useState({ email: ``, password: `` });
-
+    const token = localStorage.getItem('token');
+    // const payload = JSON.parse(atob(token.split('.')[1]));
+    console.log(token); // should include id, email, paid
+    
     const handleChange = (e) => {
         setFormData({
             ...formData, [e.target.name]: e.target.value
@@ -23,7 +28,8 @@ const Login = () => {
         // Sending a POST request to the backend API for login
         // The backend should handle the authentication and return a response
         try {
-            const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/login`, {
+            // const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/login`, {
+            const res = await axios.post(`http://localhost:5050/api/login`, {
                 email: email,
                 password: password
             });
@@ -31,7 +37,16 @@ const Login = () => {
             const { token, user } = res.data;
             // Store the token in localStorage or sessionStorage
             localStorage.setItem("authToken",JSON.stringify(token));
-            localStorage.setItem("UserInfo", JSON.stringify(user));
+            // localStorage.setItem("UserInfo", JSON.stringify(user));
+            // localStorage.setItem("loggedInUserId", user._id); // or whatever key holds the user ID
+            localStorage.setItem("loggedInUserName", user.name); // or whatever key holds the user name
+            localStorage.setItem("loggedInUserEmail", user.email); // or whatever key holds the email
+            
+            console.log("User info:", user.email);
+            // console.log('token:', localStorage.getItem('authtoken'));
+            // Optionally, you can also store user info in localStorage
+            // localStorage.setItem("user", JSON.stringify(user));
+            
             alert("Login successful!");
             console.log(res.data);
             // Redirect to the home page or dashboard after successful login

@@ -6,6 +6,10 @@ import axios from 'axios'
 
 const Signup = () => {
  const [formData, setFormData] = useState({ name:``, email:``, password:``});
+ const token = localStorage.getItem('authToken');
+//  const payload = JSON.parse(atob(token.split('.')[1]));
+//  console.log(payload); // should include id, email, paid
+console.log(token, "debug- 1");
 
  const handleChange = (e) => {
     setFormData({
