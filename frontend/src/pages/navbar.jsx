@@ -6,27 +6,29 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-useEffect(() => {
-  const checkLoginStatus = () => {
+  useEffect(() => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token);
-  };
 
-  checkLoginStatus();
-  window.addEventListener('storage', checkLoginStatus);
-  return () => window.removeEventListener('storage', checkLoginStatus);
-}, []);
+    const handleStorageChange = () => {
+      const updatedToken = localStorage.getItem('token');
+      setIsLoggedIn(!!updatedToken);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
 
   const handleLogin = () => {
       navigate('/login');
   };
 
-const handleLogout = () => {
-  localStorage.removeItem('token');
-  setIsLoggedIn(false);
-  window.dispatchEvent(new Event('storage'));
-  navigate('/');
-};
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+    window.dispatchEvent(new Event('storage'));
+    navigate('/');
+  };
 
   return (
     <nav>
@@ -108,20 +110,20 @@ const handleLogout = () => {
                   Login
                 </button>
               ) : (
-                <button
-                  onClick={() => navigate('/profile')}
-                  className="w-full text-[#d18f00] border border-[#d18f00] bg-white hover:bg-[#d18f00] hover:text-white px-3 py-2 rounded-md text-lg font-medium mt-2 transition"
-                >
-                  Profile
-                </button>
-              )}
-              {isLoggedIn && (
-                <button
-                  onClick={handleLogout}
-                  className="w-full text-white bg-red-600 hover:bg-red-700 px-3 py-2 rounded-md text-lg font-medium mt-2 transition"
-                >
-                  Logout
-                </button>
+                <>
+                  <button
+                    onClick={() => navigate('/profile')}
+                    className="w-full text-[#d18f00] border border-[#d18f00] bg-white hover:bg-[#d18f00] hover:text-white px-3 py-2 rounded-md text-lg font-medium mt-2 transition"
+                  >
+                    Profile
+                  </button>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-white bg-red-600 hover:bg-red-700 px-3 py-2 rounded-md text-lg font-medium mt-2 transition"
+                  >
+                    Logout
+                  </button>
+                </>
               )}
             </div>
           </div>
