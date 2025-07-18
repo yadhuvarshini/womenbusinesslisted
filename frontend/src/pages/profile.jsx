@@ -38,6 +38,7 @@ const ProfilePage = () => {
 
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const fetchProfile = async () => {
     console.log("Using API:", import.meta.env.VITE_API_BASE_URL);
