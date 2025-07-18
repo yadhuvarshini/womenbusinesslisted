@@ -88,10 +88,10 @@ const Navbar = () => {
           </div>
 
           <div className="hidden sm:flex items-center space-x-4">
-          <a href="" className="text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Get Listed</a>
-          <a href="#" className="text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Partner With Us</a>
-          <a href="#" className="text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Enquire Here</a>
-          <a href="#" className="text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Visionary Women Collective</a>
+          <a href="https://rzp.io/rzp/W9tZcHEh" className="text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Get Listed</a>
+          <a href="http://www.womenbusinesslisted.com/b2b" className="text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Partner With Us</a>
+          <a href="https://forms.gle/fDNmuaY2g2YgNf5g8" className="text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Enquire Here</a>
+          <a href="https://amzn.in/d/6G8vdJD" className="text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Visionary Women Collective</a>
         </div>
 
         </div>
@@ -107,10 +107,11 @@ const Navbar = () => {
               alt="WEDO Logo"
               className="h-10 w-auto mx-auto my-auto mb-4"
             />
-            <a href="#" className="block bg-[#d18f00] hover:text-[#9e4014] text-white px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
-            <a href="#" className="block text-white bg-[#d18f00] hover:text-[#9e4014] text-white px-3 py-2 rounded-md text-base font-medium">Team</a>
-            <a href="#" className="block text-white bg-[#d18f00] hover:text-[#9e4014] text-white px-3 py-2 rounded-md text-base font-medium">Projects</a>
-            <a href="#" className="block text-white bg-[#d18f00] hover:text-[#9e4014] text-white px-3 py-2 rounded-md text-base font-medium">Calendar</a>
+            <a href="https://rzp.io/rzp/W9tZcHEh" className="block text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Get Listed</a>
+            <a href="http://www.womenbusinesslisted.com/b2b" className="block text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Partner With Us</a>
+            <a href="https://forms.gle/fDNmuaY2g2YgNf5g8" className="block text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Enquire Here</a>
+            <a href="https://amzn.in/d/6G8vdJD" className="block text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Visionary Women Collective</a>
+            
           </div>
         </div>
       )}

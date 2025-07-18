@@ -9,10 +9,15 @@ import authRoutes from './routes/authRoutes.js';
 
 
 const app = express();
+
+
+
 app.use(cors({
-  origin: `*`, // Allow all origins
+  origin: `https://womenbusinesslisted.vercel.app`, 
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP
+  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 }));
+
 app.use(express.json());  
 app.use(express.urlencoded({ extended: true }));
 
