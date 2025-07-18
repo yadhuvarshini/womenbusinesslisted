@@ -6,31 +6,27 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
+useEffect(() => {
+  const checkLoginStatus = () => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token);
-  }, []);
+  };
 
-  useEffect(() => {
-    const handleStorage = () => {
-      const token = localStorage.getItem('token');
-      setIsLoggedIn(!!token);
-    };
-    window.addEventListener('storage', handleStorage);
-    return () => window.removeEventListener('storage', handleStorage);
-  }, []);
+  checkLoginStatus();
+  window.addEventListener('storage', checkLoginStatus);
+  return () => window.removeEventListener('storage', checkLoginStatus);
+}, []);
 
   const handleLogin = () => {
-    navigate('/login');
-    window.dispatchEvent(new Event('storage'));
+      navigate('/login');
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    window.dispatchEvent(new Event('storage'));
-    setIsLoggedIn(false);
-    window.location.reload();
-  };
+const handleLogout = () => {
+  localStorage.removeItem('token');
+  setIsLoggedIn(false);
+  window.dispatchEvent(new Event('storage'));
+  navigate('/');
+};
 
   return (
     <nav>
