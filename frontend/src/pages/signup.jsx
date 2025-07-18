@@ -48,7 +48,14 @@ console.log(token, "debug- 1");
     </div>
 
     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form 
+      onSubmit={async (e) => {
+            await handleSubmit(e);
+            // Redirect after successful register
+            navigate('/profile');
+          }}
+      
+      className="space-y-6">
         {/* Name Input */}
         <div>
           <label htmlFor="name" className="block text-sm/6 font-medium text-gray-900">Name</label>
@@ -73,9 +80,15 @@ console.log(token, "debug- 1");
         </div>
       </form>
 
-      <p className="mt-10 text-center text-sm/6 text-gray-500">
-        Already have an account? <a href="/api/login" className="font-semibold text-[#d18f00] hover:underline">Sign In</a>
-      </p>
+        <p className="mt-10 text-center text-sm/6 text-gray-500">
+          Already have an account?{' '}
+          <span
+            className="font-semibold custom-brand-color cursor-pointer"
+            onClick={() => navigate('/login')}
+          >
+            Sign Up
+          </span>
+        </p>
     </div>
   </div>
 );

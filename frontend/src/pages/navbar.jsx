@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 
 const Navbar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+          useEffect(() => {
+            // Replace with your actual auth logic (e.g., check localStorage or context)
+            const token = localStorage.getItem('token');
+            setIsLoggedIn(!!token);
+          }, []);
 
   return (
     <nav>
@@ -43,17 +52,41 @@ const Navbar = () => {
           </div> */}
 
           {/* Profile dropdown - optional */}
-          {/* <div className="inset-y-0 right-0 flex items-center pr-2">
+          {/* // Auth buttons (Login/Signup/Logout) */}
+
+          <div className="inset-y-0 right-0 flex items-center pr-2">
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex items-center space-x-4">
-                <a href="#" className="text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Get Listed</a>
-                <a href="#" className="text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Partner With Us</a>
-                <a href="#" className="text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Enquire Here</a>
-                <a href="#" className="text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium">Visinary Women Collective</a>
+                {isLoggedIn ? (
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem('token');
+                      setIsLoggedIn(false);
+                      // Optionally redirect or refresh
+                    }}
+                    className="text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium"
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  <>
+                    <a
+                      href="/login"
+                      className="text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium"
+                    >
+                      Login
+                    </a>
+                    <a
+                      href="/signup"
+                      className="text-white bg-[#d18f00] hover:text-[#9e4014] px-3 py-2 rounded-md text-lg font-medium"
+                    >
+                      Signup
+                    </a>
+                  </>
+                )}
               </div>
             </div>
           </div>
-        </div> */}
         
         <div className="flex items-center justify-between h-16 ">
           <div className="sm:hidden">
@@ -67,7 +100,7 @@ const Navbar = () => {
                 <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
-              )  }
+              )}
             </button>
           </div>
 

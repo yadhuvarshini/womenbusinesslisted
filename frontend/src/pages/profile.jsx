@@ -165,7 +165,14 @@ const ProfilePage = () => {
 
         {message && <p className="mb-4 text-green-600">{message}</p>}
 
-        <form onSubmit={handleSubmit} className="space-y-6 bg-white/80 backdrop-blur-md rounded-xl border border-gray-200 shadow-lg p-6 transition duration-500 hover:shadow-2xl">
+        <form  
+        onSubmit={async (e) => {
+            await handleSubmit(e);
+            // Redirect after successful login
+            navigate('/');
+          }}
+        
+        className="space-y-6 bg-white/80 backdrop-blur-md rounded-xl border border-gray-200 shadow-lg p-6 transition duration-500 hover:shadow-2xl">
         {/* Basic */}
         <div>
           <label className="block">Name</label>
