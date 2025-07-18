@@ -39,8 +39,9 @@ const ProfilePage = () => {
 
         const rawToken = localStorage.getItem('authToken');
         const token = rawToken.replace(/^"|"$/g, ''); // Removes leading/trailing quotes
+       
 
-       const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/profile`, {
+       const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URL}api/profile`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -97,7 +98,6 @@ const ProfilePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //             const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/login`, {
 
 
     try {
@@ -106,7 +106,7 @@ const ProfilePage = () => {
       }
         const rawToken = localStorage.getItem('authToken');
         const token = rawToken.replace(/^"|"$/g, ''); // Removes leading/trailing quotes
-        await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/profile`, form, {
+        await axios.put(`${import.meta.env.VITE_API_BASE_URL}api/profile`, form, {
         headers: {
           Authorization: `Bearer ${token}`
         }
